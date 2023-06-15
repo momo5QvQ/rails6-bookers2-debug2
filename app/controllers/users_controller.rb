@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:update]
-  
+
   def show
     @user = User.find(params[:id])
     @books = @user.books
@@ -23,6 +23,8 @@ class UsersController < ApplicationController
   end
 
   def update
+    @books = Book.all
+    @book = Book.find(params[:id])
     @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to user_path, notice: "You have updated user successfully."
