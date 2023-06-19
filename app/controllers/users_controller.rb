@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 
   def update
     @books = Book.all
-    @book = Book.find(params[:id])
+    @book = Book.new
     @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to user_path, notice: "You have updated user successfully."
