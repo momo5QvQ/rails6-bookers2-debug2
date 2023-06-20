@@ -27,9 +27,10 @@ class UsersController < ApplicationController
     @book = Book.new
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to user_path, notice: "You have updated user successfully."
+      redirect_to user_path(@user), notice: "You have updated user successfully."
     else
-      render :show
+      @users = User.all
+      render :edit
     end
   end
 
