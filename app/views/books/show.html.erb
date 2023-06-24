@@ -38,6 +38,13 @@
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
             <% end %>
         </tr>
+        <td><!--コメント-->
+          <p>コメント数:<%= @book.book_comments.count %></p>
+          <% @book.book_comments.each do |comment| %>
+           <P><%= image_tag comment.user.get_profile_image(100,100) %></P>
+           <%= comment.user.name %>
+           <%= comment.created_at.strftime('%Y/%m/%d') %>
+        </td>
       </table>
     </div>
   </div>
