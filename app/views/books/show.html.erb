@@ -39,11 +39,18 @@
             <% end %>
         </tr>
         <td><!--コメント-->
-          <p>コメント数:<%= @book.book_comments.count %></p>
-          <% @book.book_comments.each do |comment| %>
+          <p>コメント数:<%= @book.comments.count %></p>
+          <% @book.comments.each do |comment| %>
            <P><%= image_tag comment.user.get_profile_image(100,100) %></P>
            <%= comment.user.name %>
-           <%= comment.created_at.strftime('%Y/%m/%d') %>
+           <%= comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+           <% end %>
+        </td>
+        <td>
+         <%= form_with model: [@post_image, @post_comment] do |f| %>
+         <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+         <%= f.submit "送信する" %>
+         <% end %>
         </td>
       </table>
     </div>
