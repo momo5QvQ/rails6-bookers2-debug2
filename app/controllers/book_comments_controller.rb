@@ -11,7 +11,7 @@ class BookCommentsController < ApplicationController
 
   end
 
-  def book_params
+  def book_comment_params
     params.require(:book_comment).permit(:comment)
 
   end
