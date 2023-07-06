@@ -27,25 +27,14 @@
 
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
             <% end %>
-         <td><p>コメント数:<%= @book.book_comments.count %></p></td>
-        </tr>
-        <tr>
-          <% @book.book_comments.each do |book_comment| %>
-           <td><%= image_tag book_comment.user.get_profile_image, width: 100, height: 100 %></td>
-           <td><%= book_comment.user.name %></td>
-           <td><%= book_comment.created_at.strftime('%Y/%m/%d') %></td>
-           <td><p><%= book_comment.comment %></p></td>
-           <% end %>
-        </tr>
-        <tr>
-        <td>
-         <%= form_with model: [@book, @book_comment] do |f| %>
-         <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-         <%= f.submit "送信する" %>
-         <% end %>
-        </td>
-        </tr>
-      </table>
+          <td><p>コメント数:<%= @book.book_comments.count %></p></td>
+        </table>
+        <!--コメント一覧、コメントフォーム-->
+        
+          <div id="comments-area">
+            <%= render "book_comments/comment", book: @book, book_comment: @book_comment %>
+          </div>
+        
     </div>
   </div>
 </div>

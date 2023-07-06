@@ -1,0 +1,22 @@
+<table>
+<% book.book_comments.each do |book_comment| %><!--コメント一覧-->
+<tr>
+  <td><%= image_tag book_comment.user.get_profile_image, width: 50, height: 50 %></td>
+  <td><%= book_comment.user.name %></td>
+  <td><%= book_comment.created_at.strftime('%Y/%m/%d') %></td>
+  <td><p><%= book_comment.comment %></p></td>
+  <!--コメント削除機能-->
+  <td><%= link_to "Destroy", book_book_comment_path(book_comment.book, book_comment), method: :delete, remote: true, class:"btn btn-danger" %></td>
+</tr>
+<% end %>
+</table>
+<table>
+<tr>
+ <td>
+  <%= form_with model: [book, book_comment], local: false do |f| %><!--コメント記入欄-->
+  <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+  <%= f.submit "送信する" %>
+  <% end %>
+ </td>
+</tr>
+</table>
