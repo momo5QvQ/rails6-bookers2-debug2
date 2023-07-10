@@ -1,0 +1,14 @@
+- @another_entries.each do |entry|
+  = link_to room_path(entry.room) do
+    .card
+      .card-body
+         %div
+           .d-flex
+             .chat-avatar
+                %object
+                  = link_to user_path(entry.user) do
+                    = image_tag entry.user.avatar_image
+              .chat-user-name
+                = entry.user.display_name
+           chat-text
+             = Message.find_by(id: entry.room.message_ids.last)&.body

@@ -1,0 +1,24 @@
+.title
+  %h2
+    = ("#{@another_entry.user.email}さんとのメッセージ")
+
+- @messages.each do |m|
+  - if m.user_id == current_user.id
+    .mycomment
+      %p
+        = m.body
+- else
+  .fukidasi
+    .faceicon
+      = image_tag m.user.email
+    .chatting
+      .says
+        %p
+          = m.body
+
+.chat-form-box
+  = form_for @message do |f|
+    .chat-form-group
+      = f.text_field :body
+      = f.hidden_field :room_id, :value => @room.id
+      = f.submit "送信する"
